@@ -1,0 +1,21 @@
+public class SquareRoot {
+
+	public static void main(String[] args) {
+		double a = 3;
+		double b = 2.5;
+		double c = -0.5;
+		double r = b*b-4d*a*c;
+				        if(r < 0 || (r == 0 && a == 0)){
+		            System.out.println("x1=\nx2=");
+		        }else if (a == 0 && r > 0){
+		        	System.out.println("x1=0.0\nx2=0.0");
+		        }else {
+		            double x2 = (-b-Math.sqrt(r))/(2d*a);
+		            double x1 = (-b+Math.sqrt(r))/(2d*a);
+		            System.out.print("x1=");
+		            System.out.println(x1);
+		            System.out.print("x2=");
+		            System.out.println(x2);
+		}
+	}
+}
