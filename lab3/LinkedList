@@ -1,0 +1,97 @@
+package com.tasks3.linkedlist;
+public class LinkedList {
+    Node head;
+
+    public LinkedList() {
+    }
+
+    /* Додати елемент в кінець списку */
+    public void add(Integer data) {
+        if (head == null) {
+            head = new Node();
+            head.setData(data);
+        } else {
+            Node node = new Node();
+            node.setData(data);
+            Node temp = head;
+            while (temp.getNext() != null) {
+                temp = temp.getNext();
+            }
+            temp.setNext(node);
+        }
+    }
+
+    /* Отримати елемент по індексу, повертає null якщо такий елемент недоступний */
+    public Integer get(int index) {
+        if (index == 0) {
+            return head.getData();
+        } else if (index > 0) {
+            if (head.getNext() != null) {
+                Node temp = head;
+                int position = 1;
+                while (temp.getNext() != null) {
+                    if (position == index) {
+                        return temp.getNext().getData();
+                    } else {
+                        temp = temp.getNext();
+                        position++;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /* Вилучення елементу за індексом, повертає true у разі успіху або false в іншому випадку */
+    public boolean delete(int index) {
+        if (index == 0) {
+            if (head == null) {
+                return false;
+            } else {
+                if (head.getNext() == null) {
+                    head = null;
+                    return true;
+                } else {
+                    head = head.getNext();
+                    return true;
+                }
+            }
+        }
+
+        if (index > 0) {
+            if (head.getNext() != null) {
+                Node temp = head;
+                int position = 1;
+                while (temp.getNext() != null) {
+                    if (position == index) {
+                        temp.setNext(temp.getNext().getNext());
+                        return true;
+                    } else {
+                        temp = temp.getNext();
+                        position++;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /*Поверта розмір списку: якщо елементів в списку нема то повертає 0 (нуль)*/
+    public int size() {
+        int size = 0;
+        if (head != null) {
+            if (head.getNext() != null) {
+                Node temp = head;
+                size = 1;
+                while (temp.getNext() != null) {
+                    temp = temp.getNext();
+                    size++;
+                }
+            } else {
+                size = 1;
+            }
+        }
+        return size;
+    }
+}
+
