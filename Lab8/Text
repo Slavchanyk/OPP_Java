@@ -1,0 +1,79 @@
+
+public class Test {
+
+	public static void main(String[] args) {
+		if (args != null && args.length != 0 && args[0] != null){
+			//StringBuilder max = new StringBuilder("");
+			StringBuilder res = new StringBuilder("");
+			String max1 = args[0];
+			String min1 = args[0];
+			int n = 0, k = 0, q = 0;
+			if (args[0].contentEquals("-h") || args[0].contentEquals("-help"))
+				System.out.println("Olesia Slavchanyk, CS-110\nThis program returns the shortest and longest word from each sentence\n");
+			else if (args[0].contentEquals("-d") || args[0].contentEquals("-debug"))
+				System.out.println(res + "Debug - done");
+			else {
+				if (args[0].endsWith(".")) {
+					res.append(args[0].substring(0, args[0].length() - 1));
+					res.append("\t");
+					res.append(args[0].substring(0, args[0].length() - 1));
+					res.append('\n');
+				} else {
+					for (int i = 0; i < args.length; i++) {
+						if(args[i].endsWith(".") || args[i].endsWith(",") || args[i].endsWith("\"") || args[i].endsWith(")") ||args[i].endsWith("?") || args[i].endsWith("!")) {
+							if (args[i].length() - 1 < min1.length()) {
+								min1 = args[i].substring(0, args[i].length() - 1);
+								k = i;
+							}
+						} else if (args[i].length() < min1.length()) { 
+							min1 = args[i];
+							k = i;
+						}
+						
+						if(args[i].endsWith(".") || args[i].endsWith(",") || args[i].endsWith("\"") || args[i].endsWith(")") ||args[i].endsWith("?") || args[i].endsWith("!")) {
+							if (args[i].length() - 1 > max1.length()) { 
+								max1 = args[i].substring(0, args[i].length() - 1);
+								q = i;
+							}
+						} else if (args[i].length() > max1.length()) {
+							max1 = args[i];
+							q = i;
+						}
+						
+						if(args[i].endsWith(".") || args[i].endsWith("!") || args[i].endsWith("?")) {
+							for (int j = n; j <= i; j++) {
+								if(args[j].endsWith(".") || args[j].endsWith(",") || args[j].endsWith("\"") || args[j].endsWith(")") ||args[j].endsWith("?") || args[j].endsWith("!")) {
+									if (args[j].length()-1 == args[k].length() && j != k) {
+										min1 += "\\" + args[j].substring(0, args[j].length() - 1);
+									}
+								}else if(args[j].length() == args[k].length() && j != k) {
+										min1 += "\\" + args[j];
+								}
+								
+								if(args[j].endsWith(".") || args[j].endsWith(",") || args[j].endsWith("\"") || args[j].endsWith(")") ||args[j].endsWith("?") || args[j].endsWith("!")) {
+									if (args[j].length()-1 == args[q].length() && j != q) {
+										max1 += "\\" + args[j].substring(0, args[j].length() - 1);
+									}
+								}else if(args[j].length() == args[q].length() && j != q) {
+										max1 += "\\" + args[j];
+								}
+							}
+							res.append(min1);
+							res.append("\t");
+							res.append(max1);
+							res.append('\n');
+							n = i + 1;
+							if (i != args.length-1) {
+								min1 = args[i+1];
+								max1 = args[i+1];
+							}
+						}
+					}
+				}
+				System.out.println(res);
+			}
+		}
+
+	}
+
+}
