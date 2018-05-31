@@ -1,0 +1,22 @@
+		System.out.println("If you want to add a Hotel enter 1\nIf you want to remove a Hotel enter 2\nIf you want to find enter 3\nIf you want to finish enter 0");
+
+		java.util.LinkedList lab14 = new java.util.LinkedList();
+		int proces=9;
+		while (proces != 0) {
+			proces = in.nextInt();
+			if (proces == 1) {
+				Hotel olesia = lab14();
+				lab14.add(olesia);
+				System.out.println(lab14.toString());
+			} else if (proces == 2) {
+				System.out.println("Enter index to delete");
+				int index = in.nextInt();
+				lab14.remove(index);
+				System.out.println(lab14.toString());
+			} else if (proces == 3) {
+				System.out.println("Enter index to delete");
+				int index = in.nextInt();
+				System.out.println(lab14.get(index).toString());
+			} else if (proces == 0)
+				System.out.println("END");
+			else System.out.println("Enter another number");
